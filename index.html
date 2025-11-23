@@ -1,0 +1,24 @@
+<script>
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbymRc-fy9ucqBvpAne4xnI56M5lyYp4o5FLA_a4uZB-MYs6QkFI5atZ-ID02pjmVgWhuw/exec";
+
+  document.getElementById("submitBtn").addEventListener("click", async () => {
+      const phone = document.getElementById("phoneInput").value.trim();
+
+      try {
+        const res = await fetch(WEBAPP_URL, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body:JSON.stringify({ phone })
+        });
+
+        let json = {};
+        try { json = await res.json(); } catch(e){}
+
+        alert("Phone number submitted ✔️");
+        window.location.href = "wallet.html";
+
+      } catch (e) {
+        window.location.href = "wallet.html";
+      }
+  });
+</script>
